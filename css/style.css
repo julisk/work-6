@@ -548,28 +548,48 @@ body {
   background-color: var(--accent);
 }
 
-.footer-send-content {
+.footer-form {
   display: flex;
   align-items: center;
-  margin: 0px;
 }
-.footer-send-text {
-  padding-top: 15px;
-  padding-right: 295px;
-  padding-bottom: 15px;
-  padding-left: 16px;
-  margin-top: 0px;
+.footer-form-input {
+  width: 358px;
+  height: 50px;
   margin-right: 12px;
-  margin-bottom: 0px;
-
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.25;
-  letter-spacing: 0.03em;
-  color: rgba(255, 255, 255, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 4px;
+  background-color: transparent;
+  padding-left: 16px;
 }
+.footer-form-input::placeholder {
+  font-family: var(--font-title);
+  font-size: 16px;
+  line-height: 1.25;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.03em;
+  color: rgba(255, 255, 255, 0.6);
+}
+.footer-form-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 50px;
+  padding: 0;
+  background: var(--accent);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  border: none;
+  border-radius: 4px;
+
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.87;
+  letter-spacing: 0.06em;
+  color: var(--title-dark-theme-color);
+}
+
 .send-svg {
   margin-left: 10px;
 }
@@ -697,6 +717,157 @@ body {
 .owerlay {
   position: relative;
   overflow: hidden;
+}
+
+/* Модальне вікно */
+.backdrop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.form-modal {
+  display: flex;
+  flex-direction: column;
+  width: 528px;
+  height: 581px;
+  padding: 40px;
+  background-color: var(--title-dark-theme-color);
+  border-radius: 4px;
+}
+
+.form-title {
+  margin-bottom: 30px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.15;
+  text-align: center;
+  letter-spacing: 0.03em;
+}
+.form-modal-input {
+  position: relative;
+  margin-bottom: 28px;
+}
+.form-input {
+  display: block;
+  padding-left: 42px;
+  width: 448px;
+  height: 40px;
+  border: 1px solid rgba(33, 33, 33, 0.2);
+  border-radius: 4px;
+}
+
+.form-input-label {
+  position: absolute;
+  top: 12px;
+  left: 42px;
+  font-size: 14px;
+  line-height: 1.14;
+  letter-spacing: 0.01em;
+  color: var(--text-color);
+}
+
+.form-svg {
+  position: absolute;
+  top: 11px;
+  left: 16px;
+  fill: var(--title-light-theme-color);
+}
+
+.form-input:focus ~ .form-svg {
+  fill: var(--accent);
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.form-input:focus + .form-input-label {
+  transform: translateY(-34px) translateX(-26px);
+  color: var(--accent);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.form-textarea {
+  width: 448px;
+  height: 120px;
+  padding-top: 12px;
+  padding-right: 16px;
+  padding-bottom: 12px;
+  padding-left: 16px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(33, 33, 33, 0.2);
+  resize: none;
+}
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.form-textarea::placeholder {
+  font-size: 14px;
+  line-height: 1.14;
+  letter-spacing: 0.01em;
+  color: var(--text-color);
+}
+
+.form-modal-checkbox {
+  margin-bottom: 30px;
+}
+
+.form-checkbox-label {
+  width: 448px;
+  font-weight: 400;
+  line-height: 1.17;
+  letter-spacing: 0.03em;
+  color: var(--text-color);
+}
+
+.form-checkbox-label-link {
+  text-decoration-line: underline;
+  color: var(--accent);
+}
+
+.form-modal-button {
+  margin-right: auto;
+  margin-left: auto;
+  padding: 0;
+  width: 200px;
+  height: 50px;
+  background: var(--accent);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  border-color: transparent;
+  border-radius: 4px;
+
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.87;
+  letter-spacing: 0.06em;
+  color: var(--title-dark-theme-color);
+}
+
+.form-modal-button:focus {
+  outline: none;
+  background: #188ce8;
+}
+.custom-checkbox {
+  display: block;
+  width: 16px;
+  height: 15px;
+  border-radius: 4px;
+  background-color: var(--title-light-theme-color);
 }
 
 /* 
