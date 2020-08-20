@@ -560,6 +560,7 @@ body {
   border-radius: 4px;
   background-color: transparent;
   padding-left: 16px;
+  color: var(--title-dark-theme-color);
 }
 .footer-form-input::placeholder {
   font-family: var(--font-title);
@@ -720,6 +721,12 @@ body {
 }
 
 /* Модальне вікно */
+.backdrop.is-hidden {
+  visibility: hidden;
+  opacity: 0;
+  cursor: none;
+}
+
 .backdrop {
   display: flex;
   justify-content: center;
@@ -728,12 +735,14 @@ body {
   left: 0;
   top: 0;
   width: 100%;
+
   height: 100%;
   z-index: 100;
   background: rgba(0, 0, 0, 0.2);
 }
 
 .form-modal {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 528px;
@@ -790,9 +799,15 @@ body {
   outline: none;
   border-color: var(--accent);
   transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
 }
 
-.form-input:focus + .form-input-label {
+.form-input:hover {
+  cursor: pointer;
+}
+
+.form-input:focus + .form-input-label,
+.form-input:not(:placeholder-shown) + .form-input-label {
   transform: translateY(-34px) translateX(-26px);
   color: var(--accent);
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
@@ -815,6 +830,9 @@ body {
   border-color: var(--accent);
   transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+.form-textarea:hover {
+  cursor: pointer;
+}
 
 .form-textarea::placeholder {
   font-size: 14px;
@@ -828,6 +846,10 @@ body {
 }
 
 .form-checkbox-label {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  justify-self: s;
   width: 448px;
   font-weight: 400;
   line-height: 1.17;
@@ -861,26 +883,62 @@ body {
 .form-modal-button:focus {
   outline: none;
   background: #188ce8;
+  cursor: pointer;
 }
+
+.form-modal-button:hover {
+  cursor: pointer;
+}
+
+.form-checkbox {
+  position: absolute;
+  visibility: hidden;
+}
+
 .custom-checkbox {
-  display: block;
+  display: inline-block;
   width: 16px;
   height: 15px;
+
   border-radius: 4px;
-  background-color: var(--title-light-theme-color);
+  border: 2px solid var(--title-light-theme-color);
 }
 
-/* 
-Roboto medium
-Roboto bold
-Roboto regular
-Roboto black
-Raleway bold
- */
+.form-checkbox:checked + .custom-checkbox {
+  border-color: transparent;
+  background-color: var(--accent);
+}
+.svg-check {
+  position: absolute;
+}
+.form-modal-button-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 30px;
+  height: 30px;
+  padding: 6px;
+  background-color: var(--title-dark-theme-color);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+}
 
-/* 
-#2196F3 акцент
-#212121 текст заголовків
-#757575 текст
-#FFFFFF текст на темній темі
- */
+.form-modal-button-close:focus {
+  outline: none;
+  transform: translateY(-30%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.form-modal-button-close:hover {
+  cursor: pointer;
+}
+
+.svg-close {
+  fill: var(--title-light-theme-color);
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.form-modal-button-close:focus + .svg-close {
+  fill: var(--accent);
+}
